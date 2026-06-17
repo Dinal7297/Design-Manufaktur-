@@ -288,67 +288,52 @@
             margin: 0;
         }
 
-        /* === Gallery / Portfolio === */
+        /* === Portfolio / Galeri (tanpa foto) === */
         .gallery {
             padding: 100px 0;
             background: var(--darker);
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .gallery-item {
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .gallery-item:hover {
-            border-color: rgba(212, 168, 67, 0.3);
-            transform: scale(1.02);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* === CTA Gallery (lihat lebih banyak) === */
         .gallery-cta {
             text-align: center;
-            margin-top: 40px;
-            padding: 30px;
+            padding: 50px 30px;
             background: rgba(212, 168, 67, 0.05);
             border-radius: 16px;
             border: 1px solid rgba(212, 168, 67, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gallery-cta .icon-big {
+            font-size: 3.5rem;
+            color: var(--primary);
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .gallery-cta h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
         .gallery-cta p {
             color: #aaa;
             font-size: 1.05rem;
-            margin-bottom: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
         }
 
         .gallery-cta .btn-link-custom {
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border: 1px solid rgba(212, 168, 67, 0.3);
             border-radius: 50px;
             transition: all 0.3s ease;
             display: inline-block;
-            margin: 0 8px;
+            margin: 0 8px 8px 8px;
         }
 
         .gallery-cta .btn-link-custom:hover {
@@ -360,6 +345,22 @@
 
         .gallery-cta .btn-link-custom i {
             margin-right: 8px;
+        }
+
+        .gallery-cta .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px 0;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .gallery-cta .divider .line {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
         }
 
         /* === Tentang === */
@@ -564,6 +565,9 @@
                 margin: 8px auto;
                 max-width: 280px;
             }
+            .gallery-cta {
+                padding: 30px 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -702,66 +706,46 @@
         </div>
     </section>
 
-    <!-- ==================== GALERI / PORTOFOLIO ==================== -->
+    <!-- ==================== PORTOFOLIO (Tanpa Foto) ==================== -->
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="text-center mb-5">
                 <span class="section-label"><i class="fas fa-camera me-2"></i>Portofolio</span>
                 <h2 class="section-title">Hasil Pekerjaan Kami</h2>
                 <p class="section-subtitle mx-auto">
-                    Beberapa proyek terbaik yang telah kami selesaikan untuk pelanggan.
+                    Lihat foto dan video hasil pekerjaan kami di platform berikut.
                 </p>
-            </div>
-            <div class="gallery-grid">
-                <!-- Foto 1: Kanopi.webp -->
-                <div class="gallery-item">
-                    <img src="Kanopi.webp" alt="Kanopi Besi Modern" />
-                </div>
-                <!-- Foto 2: kanopikaca.jpeg -->
-                <div class="gallery-item">
-                    <img src="kanopikaca.jpeg" alt="Kanopi Kaca" />
-                </div>
-                <!-- Foto 3: kanopi1.jpeg -->
-                <div class="gallery-item">
-                    <img src="kanopi1.jpeg" alt="Kanopi Minimalis" />
-                </div>
-                <!-- 3 placeholder tambahan (bisa diganti dengan foto lain) -->
-                <div class="gallery-item" style="display:flex; align-items:center; justify-content:center; color:#666; background:rgba(255,255,255,0.03);">
-                    <div style="text-align:center;">
-                        <i class="fas fa-image" style="font-size:2.5rem; color:var(--primary); opacity:0.3; display:block; margin-bottom:12px;"></i>
-                        <p style="font-size:0.9rem; margin:0;">Tambah Foto</p>
-                    </div>
-                </div>
-                <div class="gallery-item" style="display:flex; align-items:center; justify-content:center; color:#666; background:rgba(255,255,255,0.03);">
-                    <div style="text-align:center;">
-                        <i class="fas fa-image" style="font-size:2.5rem; color:var(--primary); opacity:0.3; display:block; margin-bottom:12px;"></i>
-                        <p style="font-size:0.9rem; margin:0;">Tambah Foto</p>
-                    </div>
-                </div>
-                <div class="gallery-item" style="display:flex; align-items:center; justify-content:center; color:#666; background:rgba(255,255,255,0.03);">
-                    <div style="text-align:center;">
-                        <i class="fas fa-image" style="font-size:2.5rem; color:var(--primary); opacity:0.3; display:block; margin-bottom:12px;"></i>
-                        <p style="font-size:0.9rem; margin:0;">Tambah Foto</p>
-                    </div>
-                </div>
             </div>
 
-            <!-- ===== CTA: Lihat lebih banyak ===== -->
             <div class="gallery-cta">
+                <div class="icon-big">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h3>Lihat Portofolio Lengkap</h3>
                 <p>
-                    <i class="fas fa-images me-2" style="color:var(--primary);"></i>
-                    Ingin melihat lebih banyak foto atau video hasil pekerjaan kami?
+                    Untuk melihat lebih banyak foto dan video hasil pekerjaan kami,
+                    kunjungi Google Maps atau TikTok kami. Kami selalu update dengan
+                    proyek-proyek terbaru!
                 </p>
+
+                <div class="divider">
+                    <span class="line"></span>
+                    <span><i class="fas fa-arrow-down" style="color:var(--primary);"></i></span>
+                    <span class="line"></span>
+                </div>
+
                 <div>
-                    <a href="https://www.google.com/maps/place/DESIGN+MANUFAKTUR/@-6.481934,106.854121,17z/data=!4m6!3m5!1s0x2e69d8f5c8b2d7b7:0x3d8b7e2c6f9a4b2c!8m2!3d-6.481934!4d106.854121!16s%2Fg%2F11f8r9k0l3" target="_blank" class="btn-link-custom">
+                    <a href="https://www.google.com/maps/place/DESIGN+MANUFAKTUR/@-6.481934,106.854121,17z" target="_blank" class="btn-link-custom">
                         <i class="fas fa-map-pin"></i> Google Maps
                     </a>
                     <a href="https://www.tiktok.com/@designmanufaktur" target="_blank" class="btn-link-custom">
                         <i class="fab fa-tiktok"></i> TikTok
                     </a>
                 </div>
-                <p style="font-size:0.85rem; color:#777; margin-top:12px;">
-                    Klik untuk melihat foto dan video lebih lengkap
+
+                <p style="font-size:0.85rem; color:#777; margin-top:16px;">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Klik tombol di atas untuk melihat foto dan video lebih lengkap
                 </p>
             </div>
         </div>
