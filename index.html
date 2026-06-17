@@ -30,7 +30,7 @@
         .navbar {
             background: rgba(15, 15, 26, 0.95);
             backdrop-filter: blur(10px);
-            padding: 12px 0; /* Sedikit disesuaikan untuk membungkus logo dengan rapi */
+            padding: 10px 0;
             border-bottom: 1px solid rgba(212, 168, 67, 0.2);
             transition: all 0.3s ease;
         }
@@ -39,24 +39,28 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* MODIFIKASI: Mengatur pembungkus logo gambar */
-        .navbar-brand {
+        .navbar-brand-logo {
             display: flex;
             align-items: center;
-            padding: 0;
-            margin: 0;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        /* BARU: Memastikan ukuran logo gambar tidak merusak navigasi */
-        .navbar-logo {
-            height: 42px; /* Ukuran tinggi standar logo website yang ideal */
-            width: auto;  /* Menjaga rasio logo agar tidak gepeng */
+        .navbar-brand-logo img {
+            height: 45px;
+            width: auto;
             object-fit: contain;
-            transition: transform 0.3s ease;
         }
 
-        .navbar-logo:hover {
-            transform: scale(1.05); /* Efek interaktif kecil saat logo didekati kursor */
+        .navbar-brand-text {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-brand-text span {
+            color: #fff;
         }
 
         .nav-link {
@@ -297,10 +301,68 @@
             margin: 0;
         }
 
-        /* === Portfolio / Galeri (tanpa foto) === */
+        /* === Portfolio / Galeri === */
         .gallery {
             padding: 100px 0;
             background: var(--darker);
+        }
+
+        .gallery-grid {
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.4s ease;
+            aspect-ratio: 4 / 3;
+            background: #151525;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 168, 67, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 16px;
+            background: linear-gradient(to top, rgba(15, 15, 26, 0.95) 20%, rgba(15, 15, 26, 0.4) 70%, transparent);
+            color: #fff;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-item-info h5 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .gallery-item-info p {
+            margin: 4px 0 0 0;
+            font-size: 0.85rem;
+            color: #ddd;
         }
 
         .gallery-cta {
@@ -310,7 +372,7 @@
             border-radius: 16px;
             border: 1px solid rgba(212, 168, 67, 0.1);
             max-width: 700px;
-            margin: 0 auto;
+            margin: 60px auto 0;
         }
 
         .gallery-cta .icon-big {
@@ -566,9 +628,11 @@
             .map-wrapper iframe {
                 height: 280px;
             }
-            /* MODIFIKASI: Menjaga tinggi logo tetap proporsional di HP */
-            .navbar-logo {
-                height: 36px; 
+            .navbar-brand-text {
+                font-size: 1.2rem;
+            }
+            .navbar-brand-logo img {
+                height: 38px;
             }
             .gallery-cta .btn-link-custom {
                 display: block;
@@ -597,8 +661,11 @@
 
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#hero">
-                <img src="assets/logo.png" alt="DESIGN MANUFAKTUR" class="navbar-logo" />
+            <a class="navbar-brand-logo" href="#">
+                <img src="logo.png" alt="Logo Design Manufaktur" />
+                <div class="navbar-brand-text">
+                    DESIGN<span>MANUFAKTUR</span>
+                </div>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
@@ -671,14 +738,14 @@
                     <div class="service-card">
                         <div class="icon"><i class="fas fa-home"></i></div>
                         <h4>Kanopi & Teralis</h4>
-                        <p>Kanopi besi, teralis jendela, pagar minimalis, and pintu gerbang dengan desain modern & kokoh.</p>
+                        <p>Kanopi besi, teralis jendela, pagar minimalis, dan pintu gerbang dengan desain modern & kokoh.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="service-card">
                         <div class="icon"><i class="fas fa-door-open"></i></div>
                         <h4>Pintu & Rolling Door</h4>
-                        <p>Pintu besi, rolling door industri, pintu harmonika, dan aksesori keamanan berbahan logam.</p>
+                        <p>Pintu besi, rolling door industri, pintu harmonika, and aksesori keamanan berbahan logam.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -719,8 +786,110 @@
                 <span class="section-label"><i class="fas fa-camera me-2"></i>Portofolio</span>
                 <h2 class="section-title">Hasil Pekerjaan Kami</h2>
                 <p class="section-subtitle mx-auto">
-                    Lihat foto dan video hasil pekerjaan kami di platform berikut.
+                    Kumpulan proyek pengerjaan kanopi, pagar, pintu besi, dan teralis berkualitas tinggi.
                 </p>
+            </div>
+
+            <div class="row g-4 gallery-grid">
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="kanopi1.jpg" alt="Pemasangan Kanopi Minimalis" />
+                        <div class="gallery-item-info">
+                            <h5>Kanopi Minimalis</h5>
+                            <p>Rangka kokoh dengan finishing rapi dan modern.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="kanopi2.jpg" alt="Kanopi Premium Bengkel Las" />
+                        <div class="gallery-item-info">
+                            <h5>Kanopi Premium</h5>
+                            <p>Desain elegan dan perlindungan maksimal anti bocor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="kanopi3.jpg" alt="Kanopi Rumah Modern" />
+                        <div class="gallery-item-info">
+                            <h5>Kanopi Rumah Modern</h5>
+                            <p>Kombinasi material premium tahan cuaca ekstrem.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="pagar1.jpg" alt="Pagar Besi Minimalis" />
+                        <div class="gallery-item-info">
+                            <h5>Pagar Minimalis</h5>
+                            <p>Tampilan bersih dan simpel untuk rumah idaman.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="pagar2.jpg" alt="Pagar Besi Kokoh" />
+                        <div class="gallery-item-info">
+                            <h5>Pagar Keamanan Tinggi</h5>
+                            <p>Konstruksi besi tebal menjamin keamanan ekstra.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="pagar3.jpg" alt="Pagar Motif Modern" />
+                        <div class="gallery-item-info">
+                            <h5>Pagar Motif Modern</h5>
+                            <p>Estetis dengan detail pengerjaan las yang presisi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="pagar4.jpg" alt="Pagar Rumah Elegan" />
+                        <div class="gallery-item-info">
+                            <h5>Pagar Rumah Elegan</h5>
+                            <p>Kombinasi estetika eksterior berkelas tinggi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="pintu1.jpg" alt="Pintu Besi Safety" />
+                        <div class="gallery-item-info">
+                            <h5>Pintu Besi Pengaman</h5>
+                            <p>Proteksi ganda pintu rumah dengan besi berkualitas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="pintu2.jpg" alt="Pintu Besi Estetis" />
+                        <div class="gallery-item-info">
+                            <h5>Pintu Besi Minimalis</h5>
+                            <p>Desain simpel namun kokoh memberikan rasa aman.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 mx-auto">
+                    <div class="gallery-item">
+                        <img src="tralis1.jpg" alt="Teralis Jendela Minimalis" />
+                        <div class="gallery-item-info">
+                            <h5>Teralis Jendela</h5>
+                            <p>Pelindung jendela dengan las yang kuat dan rapi.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="gallery-cta">
@@ -741,7 +910,7 @@
                 </div>
 
                 <div>
-                    <a href="https://www.google.com/maps/place/DESIGN+MANUFAKTUR/@-6.481934,106.854121,17z" target="_blank" class="btn-link-custom">
+                    <a href="https://maps.google.com" target="_blank" class="btn-link-custom">
                         <i class="fas fa-map-pin"></i> Google Maps
                     </a>
                     <a href="https://www.tiktok.com/@designmanufaktur" target="_blank" class="btn-link-custom">
@@ -842,7 +1011,7 @@
                 <div class="col-lg-7">
                     <div class="map-wrapper">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3953.123456789012!2d110.12345678901234!3d-7.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1234567890123&q=Jl.%20Sirojul%20Munir%2C%20RT.002%20RW.007%2C%20Nanggewer%2C%20Kec.%20Cibinong%2C%20Kabupaten%20Bogor%2C%20Jawa%20Barat%2016912"
+                            src="https://www.google.com/maps/embed"
                             allowfullscreen=""
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
@@ -870,8 +1039,7 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Navbar shadow on scroll
         window.addEventListener('scroll', function() {
@@ -892,7 +1060,6 @@
                     const target = document.querySelector(targetId);
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        // close mobile menu
                         const navCollapse = document.getElementById('navMenu');
                         const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
                         if (bsCollapse) bsCollapse.hide();
