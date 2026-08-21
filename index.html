@@ -3,69 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Manufaktur - Bengkel Las Cibinong & Jabodetabek</title>
-    <!-- Bootstrap CSS -->
+    <title>DESIGN MANUFAKTUR - Bengkel Las Cibinong & Jabodetabek</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Bengkel las profesional Cibinong & Jabodetabek. Melayani pembuatan kanopi, pagar, railing, teralis, dan konstruksi besi berkualitas dengan harga bersaing.">
+    <meta name="keywords" content="bengkel las cibinong, bengkel las bogor, kanopi cibinong, pagar besi, teralis, konstruksi besi jabodetabek, design manufaktur">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="DESIGN MANUFAKTUR - Bengkel Las Cibinong & Jabodetabek">
+    <meta property="og:description" content="Jasa pembuatan kanopi, pagar, railing, teralis berkualitas di Jabodetabek. Konsultasi & survei gratis!">
+    <meta property="og:type" content="website">
+
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <!-- Font Awesome Pro / Free icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         :root {
-            --bg-dark: #0d0f12;
-            --bg-card: #161a20;
-            --gold-primary: #d4af37;
-            --gold-hover: #f3c623;
-            --text-light: #f8f9fa;
-            --text-muted: #9aa0a6;
-            --border-color: #2a303c;
+            --primary-gold: #d4af37;
+            --primary-gold-hover: #b89628;
+            --dark-bg: #0a0c0f;
+            --card-bg: #12151c;
+            --card-border: #1e2430;
+            --text-main: #e2e8f0;
+            --text-muted: #8a94a6;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Navbar Styling */
         .navbar {
-            background-color: rgba(13, 15, 18, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 12, 15, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 15px 0;
+            transition: all 0.3s ease;
         }
 
         .navbar-brand {
-            font-weight: 800;
-            color: var(--gold-primary) !important;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #fff !important;
             letter-spacing: 1px;
         }
 
+        .navbar-brand span {
+            color: var(--primary-gold);
+        }
+
         .nav-link {
-            color: var(--text-light) !important;
+            color: var(--text-main) !important;
             font-weight: 500;
+            margin: 0 10px;
             transition: color 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--gold-primary) !important;
+            color: var(--primary-gold) !important;
         }
 
+        /* Buttons */
+        .btn-primary-custom {
+            background-color: var(--primary-gold);
+            color: #000;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--primary-gold-hover);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 50px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 40%);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--primary-gold);
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Section Global */
         .section-padding {
-            padding: 80px 0;
+            padding: 90px 0;
         }
 
         .section-label {
-            color: var(--gold-primary);
+            color: var(--primary-gold);
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
         .section-title {
-            font-weight: 800;
             font-size: 2.2rem;
-            margin-top: 8px;
-            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
 
         .section-subtitle {
@@ -73,22 +168,53 @@
             max-width: 600px;
         }
 
+        /* Card Styling */
+        .custom-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .custom-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* Map Container */
+        .map-wrapper {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+            display: block;
+        }
+
+        /* Contact Items */
         .contact-info-item {
             display: flex;
             align-items: flex-start;
             gap: 16px;
-            margin-bottom: 24px;
-            background: var(--bg-card);
-            padding: 16px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            background: var(--card-bg);
+            padding: 18px 22px;
+            border-radius: 14px;
+            border: 1px solid var(--card-border);
         }
 
         .contact-info-item .icon {
             width: 44px;
             height: 44px;
             background: rgba(212, 175, 55, 0.1);
-            color: var(--gold-primary);
+            color: var(--primary-gold);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -107,64 +233,40 @@
 
         .contact-info-item p, .contact-info-item a {
             margin: 0;
-            color: var(--text-light);
+            color: var(--text-main);
             font-weight: 600;
             text-decoration: none;
         }
 
-        .btn-primary-custom {
-            background-color: var(--gold-primary);
-            color: #000;
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: none;
-            display: inline-flex;
+        /* Floating WA */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
             transition: all 0.3s ease;
-            width: 100%;
         }
 
-        .btn-primary-custom:hover {
-            background-color: var(--gold-hover);
-            color: #000;
-            transform: translateY(-2px);
+        .floating-wa:hover {
+            color: #fff;
+            transform: scale(1.1);
         }
 
-        .btn-outline-custom {
-            background-color: transparent;
-            color: var(--text-light);
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-outline-custom:hover {
-            border-color: var(--gold-primary);
-            color: var(--gold-primary);
-            transform: translateY(-2px);
-        }
-
-        .map-container {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
+        /* Footer */
         footer {
-            background-color: #08090b;
-            border-top: 1px solid var(--border-color);
-            padding: 30px 0;
+            background-color: #060709;
+            border-top: 1px solid var(--card-border);
+            padding: 35px 0;
             color: var(--text-muted);
             font-size: 0.9rem;
         }
@@ -177,45 +279,107 @@
         }
 
         footer a:hover {
-            color: var(--gold-primary);
+            color: var(--primary-gold);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .style-buttons a {
+                width: 100%;
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">DESIGN MANUFAKTUR</a>
+            <a class="navbar-brand" href="#">DESIGN<span>MANUFAKTUR</span></a>
             <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="#beranda">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#lokasi-utama">Peta Lokasi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#peta-lokasi">Lokasi</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="https://wa.me/6281911945270" class="btn-primary-custom" target="_blank"><i class="fab fa-whatsapp me-2"></i>Konsultasi Gratis</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- SECTION PETA GOOGLE MAPS UTAMA (SATU-SATUNYA PETA YANG DIPERTAHANKAN) -->
-    <section class="section-padding" id="lokasi-utama">
+    <!-- HERO SECTION -->
+    <section class="hero" id="beranda">
         <div class="container">
-            <div class="text-center mb-4">
-                <span class="section-label"><i class="fas fa-map-marker-alt me-2"></i>Lokasi Workshop</span>
-                <h2 class="section-title">Kunjungi Bengkel Kami</h2>
-                <p class="section-subtitle mx-auto">Silakan lihat peta lokasi di bawah ini untuk datang langsung ke workshop kami di Cibinong.</p>
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <span class="section-label"><i class="fas fa-tools me-2"></i>Bengkel Las Profesional</span>
+                    <h1 class="hero-title">Solusi Konstruksi Besi & Las Berkualitas <span>Jabodetabek</span></h1>
+                    <p class="hero-subtitle">Melayani pembuatan kanopi, pagar, railing tangga, teralis, hingga konstruksi baja ringan & berat dengan hasil rapi, kokoh, dan bergaransi.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://wa.me/6281911945270" target="_blank" class="btn-primary-custom"><i class="fab fa-whatsapp me-2"></i>Hubungi Agus</a>
+                        <a href="https://wa.me/6281293105899" target="_blank" class="btn-primary-custom"><i class="fab fa-whatsapp me-2"></i>Hubungi Dinal</a>
+                    </div>
+                </div>
             </div>
-            <div class="row justify-content-center">
+        </div>
+    </section>
+
+    <!-- LAYANAN SECTION -->
+    <section class="section-padding" id="layanan">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label"><i class="fas fa-layer-group me-2"></i>Layanan Utama</span>
+                <h2 class="section-title">Apa Yang Kami Kerjakan?</h2>
+                <p class="section-subtitle mx-auto">Kami mengutamakan kualitas material dan ketelitian presisi pengerjaan untuk setiap proyek Anda.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="custom-card">
+                        <i class="fas fa-warehouse text-warning display-5 mb-3"></i>
+                        <h4>Kanopi & Atap</h4>
+                        <p class="text-muted">Kanopi atap spandek, alderon, kaca, hingga solarflat dengan rangka besi hollow atau baja ringan.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="custom-card">
+                        <i class="fas fa-door-closed text-warning display-5 mb-3"></i>
+                        <h4>Pagar & Pintu Besi</h4>
+                        <p class="text-muted">Pagar minimalis, klasik, pintu dorong, pintu lipat, serta kombinasi kayu/WPC modern.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="custom-card">
+                        <i class="fas fa-shield-alt text-warning display-5 mb-3"></i>
+                        <h4>Railing & Teralis</h4>
+                        <p class="text-muted">Railing tangga, balkon, teralis jendela dan pintu pengaman dengan estetika tinggi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PETA GOOGLE MAPS UTAMA (SATU-SATUNYA PETA YANG DIPERTAHANKAN DI ATAS) -->
+    <section class="section-padding" id="peta-lokasi">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="section-label"><i class="fas fa-map-marked-alt me-2"></i>Lokasi Workshop</span>
+                <h2 class="section-title">Temukan Lokasi Bengkel Kami</h2>
+                <p class="section-subtitle mx-auto">Kunjungi bengkel las kami secara langsung atau gunakan petunjuk arah via Google Maps di bawah ini.</p>
+            </div>
+            <div class="row justify-content-center" data-aos="zoom-in">
                 <div class="col-lg-10">
-                    <div class="map-container">
+                    <div class="map-wrapper">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.3813359628807!2d106.8407338!3d-6.4732959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c10023eeefbf%3A0x86874e0d9bd48512!2sDesign%20Manufaktur!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
-                            width="100%" 
-                            height="400" 
-                            style="border:0;" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
@@ -226,75 +390,36 @@
         </div>
     </section>
 
-    <!-- SECTION KONTAK (PETA DI SINI SUDAH DIHAPUS, HANYA DENGAN TOMBOL RINGKAS) -->
-    <section class="contact section-padding" id="contact" style="background-color: rgba(22, 26, 32, 0.5);">
+    <!-- SECTION KONTAK (BAGIAN MAP DI SINI TELAH DIHAPUS, MENYISAKAN KOLOM KONTAK LENGKAP BERSAMA TOMBOL-TOMBOLNYA) -->
+    <section class="contact section-padding" id="contact">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5" data-aos="fade-up">
                 <span class="section-label"><i class="fas fa-phone me-2"></i>Hubungi Kami</span>
                 <h2 class="section-title">Lokasi & Kontak</h2>
                 <p class="section-subtitle mx-auto">Kunjungi bengkel las kami di Cibinong atau hubungi untuk konsultasi gratis area Jabodetabek.</p>
             </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-6">
-                    <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-map-pin"></i></div>
-                        <div class="text">
-                            <h6>Alamat Bengkel</h6>
-                            <p>Jl. Sirojul Munir, RT.002 RW.007, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912</p>
-                        </div>
-                    </div>
+            <div class="row g-5 align-items-center justify-content-center" data-aos="fade-up">
+                <div class="col-lg-7">
+                    <div class="contact-info-item"><div class="icon"><i class="fas fa-map-pin"></i></div><div class="text"><h6>Alamat Bengkel</h6><p>Jl. Sirojul Munir, RT.002 RW.007, Nanggewer, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16912</p></div></div>
+                    <div class="contact-info-item"><div class="icon"><i class="fas fa-phone"></i></div><div class="text"><h6>Telepon / WA</h6><p><a href="tel:+6281911945270">0819-1194-5270</a> (Agus)</p></div></div>
+                    <div class="contact-info-item"><div class="icon"><i class="fas fa-phone"></i></div><div class="text"><h6>Telepon / WA</h6><p><a href="tel:+6281293105899">0812-9310-5899</a> (Dinal)</p></div></div>
+                    <div class="contact-info-item"><div class="icon"><i class="fas fa-envelope"></i></div><div class="text"><h6>Email</h6><p><a href="mailto:Dinalmubarok97@gmail.com">Dinalmubarok97@gmail.com</a></p></div></div>
+                    <div class="contact-info-item"><div class="icon"><i class="fas fa-clock"></i></div><div class="text"><h6>Jam Kerja</h6><p>Senin – Minggu : 08.00 – 22.00</p></div></div>
                     
-                    <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-phone"></i></div>
-                        <div class="text">
-                            <h6>Telepon / WA (Admin Agus)</h6>
-                            <p><a href="tel:+6281911945270">0819-1194-5270</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-phone"></i></div>
-                        <div class="text">
-                            <h6>Telepon / WA (Admin Dinal)</h6>
-                            <p><a href="tel:+6281293105899">0812-9310-5899</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-envelope"></i></div>
-                        <div class="text">
-                            <h6>Email</h6>
-                            <p><a href="mailto:Dinalmubarok97@gmail.com">Dinalmubarok97@gmail.com</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-info-item">
-                        <div class="icon"><i class="fas fa-clock"></i></div>
-                        <div class="text">
-                            <h6>Jam Kerja</h6>
-                            <p>Senin – Minggu : 08.00 – 22.00</p>
-                        </div>
-                    </div>
-                    
-                    <!-- DAFTAR TOMBOL KONTAK & SOSMED (TANPA PETA PETA TAMBAHAN) -->
-                    <div class="d-flex flex-column gap-3 mt-4">
-                        <a href="https://wa.me/6281911945270" class="btn-primary-custom" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>WA Admin Agus
-                        </a>
-                        <a href="https://wa.me/6281293105899" class="btn-primary-custom" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>WA Admin Dinal
-                        </a>
-                        <a href="https://maps.app.goo.gl/qTCDFkPgxLpWmzNv5" class="btn-outline-custom" target="_blank">
-                            <i class="fas fa-map-marked-alt me-2"></i>Buka Petunjuk Arah di App Google Maps
-                        </a>
-                        <a href="https://www.tiktok.com/@designmanufaktur.id?_r=1&_t=ZS-97IEO0umexe" target="_blank" class="btn-outline-custom">
-                            <i class="fab fa-tiktok me-2"></i>Ikuti TikTok Kami
-                        </a>
+                    <div class="d-flex flex-wrap gap-2 style-buttons" style="margin-top:24px;">
+                        <a href="https://wa.me/6281911945270" class="btn-primary-custom" target="_blank"><i class="fab fa-whatsapp me-2"></i>WA Admin Agus</a>
+                        <a href="https://wa.me/6281293105899" class="btn-primary-custom" target="_blank"><i class="fab fa-whatsapp me-2"></i>WA Admin Dinal</a>
+                        <a href="https://www.tiktok.com/@designmanufaktur.id?_r=1&_t=ZS-97IEO0umexe" target="_blank" class="btn-outline-custom" style="margin-left:0;"><i class="fab fa-tiktok me-2"></i>Ikuti TikTok Kami</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/6281911945270" class="floating-wa" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- FOOTER -->
     <footer class="text-center">
@@ -311,6 +436,14 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
 </body>
 </html>
 
