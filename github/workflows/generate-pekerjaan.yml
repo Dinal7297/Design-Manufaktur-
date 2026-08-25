@@ -1,0 +1,42 @@
+name: Generate halaman Hasil Pekerjaan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/pekerjaan.json"
+      - "assets/pekerjaan/**"
+      - "pekerjaan/template.html"
+      - "pekerjaan/list-template.html"
+      - "pekerjaan/generate.py"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate halaman pekerjaan + sitemap
+        run: python pekerjaan/generate.py
+
+      - name: Commit hasil generate (jika ada perubahan)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pekerjaan/ sitemap.xml
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan halaman untuk di-commit."
+          else
+            git commit -m "chore: auto-generate halaman hasil pekerjaan [skip ci]"
+            git push
+          fi
