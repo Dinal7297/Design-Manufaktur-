@@ -3,99 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hasil Pekerjaan | DESIGN MANUFAKTUR</title>
-<meta name="description" content="Dokumentasi hasil pekerjaan pagar, kanopi, tenda, teralis, pintu, railing dan fabrikasi besi DESIGN MANUFAKTUR di Cibinong Bogor.">
-
+<title>Hasil Pekerjaan DESIGN MANUFAKTUR</title>
+<meta name="description" content="Kumpulan hasil pekerjaan DESIGN MANUFAKTUR meliputi pagar besi, kanopi, tenda, teralis, pintu, railing dan fabrikasi besi di Cibinong Bogor.">
+<link rel="canonical" href="/pekerjaan/">
 <style>
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#222
-}
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:25px
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px
-}
-.card{
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 3px 15px rgba(0,0,0,.08)
-}
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover
-}
-.card-content{
-  padding:18px
-}
-.card h2{
-  margin:0 0 10px;
-  font-size:21px
-}
-.card a{
-  color:inherit;
-  text-decoration:none
-}
+body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#222}
+header{background:#111;color:white;padding:35px 20px}
+main{max-width:1100px;margin:auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 15px #0001}
+.card img{width:100%;height:220px;object-fit:cover}
+.card-body{padding:18px}
+.card h2{margin-top:0}
+.card p{line-height:1.6;color:#555}
+.card a{color:inherit;text-decoration:none}
+.card span{font-weight:bold}
 </style>
 </head>
-
 <body>
-<div class="container">
-
+<header>
 <h1>Hasil Pekerjaan DESIGN MANUFAKTUR</h1>
+<p>Dokumentasi pekerjaan fabrikasi besi dan konstruksi custom di Cibinong, Bogor.</p>
+</header>
+<main>
+<div class="grid">
 
-<p>
-Dokumentasi pekerjaan dan proyek DESIGN MANUFAKTUR
-di Cibinong, Bogor dan Jabodetabek.
-</p>
-
-<div id="daftar-pekerjaan" class="grid"></div>
-
-</div>
-
-<script>
-fetch('/data/pekerjaan.json')
-.then(response => response.json())
-.then(data => {
-
-  const container = document.getElementById('daftar-pekerjaan');
-
-  if (!data.length) {
-    container.innerHTML = '<p>Belum ada pekerjaan.</p>';
-    return;
-  }
-
-  container.innerHTML = data.map(item => `
     <article class="card">
-      <a href="${item.url}">
-        <img
-          src="${item.image}"
-          alt="${item.imageAlt}"
-          loading="lazy">
-        <div class="card-content">
-          <h2>${item.title}</h2>
-          <p>${item.description}</p>
-          <small>${item.date}</small>
+      <a href="/pekerjaan/pagar-besi-cibinong-001/">
+        <img src="/assets/pekerjaan/pagar/images/pagar-cibinong-001.jpg" alt="Pagar besi custom hasil pekerjaan DESIGN MANUFAKTUR di Cibinong Bogor" loading="lazy">
+        <div class="card-body">
+          <h2>Pembuatan Pagar Besi Custom di Cibinong Bogor</h2>
+          <p>Hasil pekerjaan pembuatan dan pemasangan pagar besi custom oleh DESIGN MANUFAKTUR di Cibinong, Bogor.</p>
+          <span>Lihat pekerjaan →</span>
         </div>
       </a>
     </article>
-  `).join('');
-})
-.catch(error => {
-  console.error(error);
-  document.getElementById('daftar-pekerjaan').innerHTML =
-    '<p>Data pekerjaan gagal dimuat.</p>';
-});
-</script>
-
+    
+</div>
+</main>
 </body>
 </html>
