@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{{TITLE}} | DESIGN MANUFAKTUR</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{URL}}">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{TITLE}} | DESIGN MANUFAKTUR">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:image" content="{{IMAGE}}">
+<meta property="og:url" content="{{URL}}">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  line-height:1.7;
+  color:#222;
+  background:#f5f5f5
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px
+}
+article{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 3px 15px rgba(0,0,0,.08)
+}
+.hero{
+  width:100%;
+  display:block;
+  max-height:600px;
+  object-fit:cover
+}
+.content{
+  padding:25px
+}
+h1{
+  font-size:32px;
+  line-height:1.25;
+  margin:0 0 10px
+}
+.date{
+  color:#777;
+  margin-bottom:20px
+}
+.category{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:20px;
+  background:#eee;
+  margin-bottom:20px
+}
+.back{
+  display:inline-block;
+  margin-top:25px;
+  text-decoration:none;
+  font-weight:bold
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<article>
+
+<img class="hero"
+     src="{{IMAGE}}"
+     alt="{{IMAGE_ALT}}"
+     loading="eager">
+
+<div class="content">
+
+<div class="category">{{CATEGORY}}</div>
+
+<h1>{{TITLE}}</h1>
+
+<div class="date">{{DATE}}</div>
+
+<div>
+{{CONTENT}}
+</div>
+
+<a class="back" href="/pekerjaan/">
+← Lihat semua hasil pekerjaan
+</a>
+
+</div>
+</article>
+</div>
+</body>
+</html>
