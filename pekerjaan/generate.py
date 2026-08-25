@@ -1,154 +1,140 @@
-import json, os, html
+"""
+Generator halaman "Hasil Pekerjaan" untuk website DESIGN MANUFAKTUR.
 
-with open("data/pekerjaan.json", "r", encoding="utf-8") as f:
-    items = json.load(f)
+CARA MENAMBAH HASIL PEKERJAAN BARU (tanpa mengedit file ini / index.html / template.html):
+1. Upload foto ke folder assets/pekerjaan/<kategori>/images/
+2. Tambahkan satu objek baru di data/pekerjaan.json (contoh sudah ada di file itu)
+3. Push ke GitHub -> GitHub Action otomatis menjalankan skrip ini dan
+   men-generate ulang seluruh halaman /pekerjaan/ beserta sitemap.xml.
+
+Jangan mengedit file ini kecuali memang ingin mengubah LOGIKA generator.
+Untuk mengubah TAMPILAN halaman, cukup edit:
+- pekerjaan/template.html       (halaman detail satu pekerjaan)
+- pekerjaan/list-template.html  (halaman daftar /pekerjaan/)
+"""
+import json
+import os
+import html
+from datetime import date
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE_URL = "https://design-manufaktur.vercel.app"
+
+DATA_FILE = os.path.join(ROOT, "data", "pekerjaan.json")
+PEKERJAAN_DIR = os.path.join(ROOT, "pekerjaan")
+DETAIL_TEMPLATE_FILE = os.path.join(PEKERJAAN_DIR, "template.html")
+LIST_TEMPLATE_FILE = os.path.join(PEKERJAAN_DIR, "list-template.html")
+SITEMAP_FILE = os.path.join(ROOT, "sitemap.xml")
+
 
 def esc(x):
     return html.escape(str(x or ""))
 
-os.makedirs("pekerjaan", exist_ok=True)
 
-# =========================
-# HALAMAN DAFTAR PEKERJAAN
-# =========================
-cards = []
+def load_items():
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        items = json.load(f)
+    slugs = [i["slug"] for i in items]
+    if len(slugs) != len(set(slugs)):
+        raise ValueError("Ada slug yang duplikat di data/pekerjaan.json — setiap pekerjaan harus punya slug unik.")
+    return items
 
-for item in items:
+
+def render_card(item):
     slug = item["slug"]
     title = esc(item["title"])
     desc = esc(item.get("description", ""))
     image = esc(item.get("image", ""))
     url = item.get("url", f"/pekerjaan/{slug}/")
-
-    cards.append(f"""
+    return f"""
     <article class="card">
       <a href="{url}">
         <img src="{image}" alt="{esc(item.get('imageAlt', title))}" loading="lazy">
         <div class="card-body">
           <h2>{title}</h2>
           <p>{desc}</p>
-          <span>Lihat pekerjaan →</span>
+          <span>Lihat pekerjaan &rarr;</span>
         </div>
       </a>
     </article>
-    """)
+    """
 
-index_html = f"""<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hasil Pekerjaan DESIGN MANUFAKTUR</title>
-<meta name="description" content="Kumpulan hasil pekerjaan DESIGN MANUFAKTUR meliputi pagar besi, kanopi, tenda, teralis, pintu, railing dan fabrikasi besi di Cibinong Bogor.">
-<link rel="canonical" href="/pekerjaan/">
-<style>
-body{{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#222}}
-header{{background:#111;color:white;padding:35px 20px}}
-main{{max-width:1100px;margin:auto;padding:30px 20px}}
-.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}}
-.card{{background:white;border-radius:14px;overflow:hidden;box-shadow:0 3px 15px #0001}}
-.card img{{width:100%;height:220px;object-fit:cover}}
-.card-body{{padding:18px}}
-.card h2{{margin-top:0}}
-.card p{{line-height:1.6;color:#555}}
-.card a{{color:inherit;text-decoration:none}}
-.card span{{font-weight:bold}}
-</style>
-</head>
-<body>
-<header>
-<h1>Hasil Pekerjaan DESIGN MANUFAKTUR</h1>
-<p>Dokumentasi pekerjaan fabrikasi besi dan konstruksi custom di Cibinong, Bogor.</p>
-</header>
-<main>
-<div class="grid">
-{''.join(cards)}
-</div>
-</main>
-</body>
-</html>
-"""
 
-with open("pekerjaan/index.html", "w", encoding="utf-8") as f:
-    f.write(index_html)
+def build_list_page(items):
+    with open(LIST_TEMPLATE_FILE, "r", encoding="utf-8") as f:
+        template = f.read()
 
-# =========================
-# HALAMAN DETAIL SETIAP JOB
-# =========================
-for item in items:
-    slug = item["slug"]
-    folder = f"pekerjaan/{slug}"
-    os.makedirs(folder, exist_ok=True)
+    if items:
+        cards_html = "".join(render_card(i) for i in items)
+    else:
+        cards_html = '<p class="empty">Belum ada hasil pekerjaan yang ditampilkan.</p>'
 
-    title = esc(item["title"])
-    description = esc(item.get("description", ""))
-    content = item.get("content", "")
-    image = esc(item.get("image", ""))
-    image_alt = esc(item.get("imageAlt", title))
-    date = esc(item.get("date", ""))
-    category = esc(item.get("category", ""))
+    page = template.replace("{{CARDS}}", cards_html)
 
-    page = f"""<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>{title} | DESIGN MANUFAKTUR</title>
-
-<meta name="description" content="{description}">
-<meta name="robots" content="index,follow">
-
-<link rel="canonical" href="/pekerjaan/{slug}/">
-
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{description}">
-<meta property="og:image" content="{image}">
-<meta property="og:type" content="article">
-
-<style>
-body{{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#222}}
-header{{background:#111;color:#fff;padding:30px 20px}}
-main{{max-width:900px;margin:auto;background:#fff;padding:25px 20px}}
-.hero{{width:100%;max-height:600px;object-fit:cover;border-radius:12px}}
-.meta{{color:#777;margin:15px 0}}
-.content{{font-size:18px;line-height:1.8}}
-.back{{display:inline-block;margin-top:30px;font-weight:bold}}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>{title}</h1>
-<p>DESIGN MANUFAKTUR — Bengkel Las & Fabrikasi Besi Cibinong Bogor</p>
-</header>
-
-<main>
-
-<img class="hero" src="{image}" alt="{image_alt}">
-
-<div class="meta">
-Kategori: {category} · {date}
-</div>
-
-<h2>{title}</h2>
-
-<p>{description}</p>
-
-<div class="content">
-{content}
-</div>
-
-<a class="back" href="/pekerjaan/">← Kembali ke semua pekerjaan</a>
-
-</main>
-
-</body>
-</html>
-"""
-
-    with open(f"{folder}/index.html", "w", encoding="utf-8") as f:
+    with open(os.path.join(PEKERJAAN_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(page)
 
-print(f"Berhasil membuat {len(items)} halaman pekerjaan.")
+
+def build_detail_pages(items):
+    with open(DETAIL_TEMPLATE_FILE, "r", encoding="utf-8") as f:
+        template = f.read()
+
+    for item in items:
+        slug = item["slug"]
+        folder = os.path.join(PEKERJAAN_DIR, slug)
+        os.makedirs(folder, exist_ok=True)
+
+        url = item.get("url", f"/pekerjaan/{slug}/")
+        page = (
+            template
+            .replace("{{TITLE}}", esc(item["title"]))
+            .replace("{{DESCRIPTION}}", esc(item.get("description", "")))
+            .replace("{{URL}}", esc(f"{SITE_URL}{url}" if url.startswith("/") else url))
+            .replace("{{IMAGE}}", esc(item.get("image", "")))
+            .replace("{{IMAGE_ALT}}", esc(item.get("imageAlt", item["title"])))
+            .replace("{{CATEGORY}}", esc(item.get("category", "")))
+            .replace("{{DATE}}", esc(item.get("date", "")))
+            .replace("{{CONTENT}}", item.get("content", ""))
+        )
+
+        with open(os.path.join(folder, "index.html"), "w", encoding="utf-8") as f:
+            f.write(page)
+
+
+def build_sitemap(items):
+    today = date.today().isoformat()
+    urls = [
+        (f"{SITE_URL}/", today),
+        (f"{SITE_URL}/pekerjaan/", today),
+    ]
+    for item in items:
+        url = item.get("url", f"/pekerjaan/{item['slug']}/")
+        loc = f"{SITE_URL}{url}" if url.startswith("/") else url
+        # "date" di data/pekerjaan.json berupa teks tampilan (mis. "26 Agustus 2026"),
+        # sitemap butuh format ISO, jadi pakai field opsional "dateISO" kalau ada.
+        urls.append((loc, item.get("dateISO", today)))
+
+    entries = "\n".join(
+        f"  <url>\n    <loc>{esc(loc)}</loc>\n    <lastmod>{esc(lastmod)}</lastmod>\n  </url>"
+        for loc, lastmod in urls
+    )
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{entries}\n"
+        "</urlset>\n"
+    )
+    with open(SITEMAP_FILE, "w", encoding="utf-8") as f:
+        f.write(sitemap)
+
+
+def main():
+    items = load_items()
+    build_list_page(items)
+    build_detail_pages(items)
+    build_sitemap(items)
+    print(f"Berhasil membuat {len(items)} halaman pekerjaan + sitemap.xml.")
+
+
+if __name__ == "__main__":
+    main()
