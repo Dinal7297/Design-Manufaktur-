@@ -1,8 +1,5 @@
 name: Generate halaman Hasil Pekerjaan
 
-# Otomatis jalan setiap kali data/pekerjaan.json atau foto di assets/pekerjaan
-# berubah (baik lewat push langsung maupun upload file di GitHub web),
-# atau bisa dijalankan manual lewat tab "Actions" -> "Run workflow".
 on:
   push:
     branches: [main]
@@ -43,4 +40,3 @@ jobs:
             git commit -m "chore: auto-generate halaman hasil pekerjaan [skip ci]"
             git push
           fi
-
